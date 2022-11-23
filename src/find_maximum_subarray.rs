@@ -59,7 +59,19 @@ fn find_max_crossing_subarray(
 }
 
 fn find_maximum_subarray(a: &Vec<i64>, low: usize, high: usize) -> (usize, usize, i64) {
-    todo!()
+    if high == low {
+        return (low, high, a[low]);
+    }
+    let mid = (low + high) / 2;
+    let (left_low, left_high, left_sum) = find_maximum_subarray(a, low, mid);
+    let (right_low, right_high, right_sum) = find_maximum_subarray(a, mid + 1, high);
+    let (cross_low, cross_high, cross_sum) = find_max_crossing_subarray(a, low, mid, high);
+    if left_sum >= right_sum && left_sum >= cross_sum {
+        return (left_low, left_high, left_sum);
+    } else if right_sum >= left_sum && right_sum >= cross_sum {
+        return (right_low, right_high, right_sum);
+    }
+    (cross_low, cross_high, cross_sum)
 }
 
 #[cfg(test)]
