@@ -14,7 +14,6 @@
 //			right-sum = sum
 //			max-right = j
 //	return (max-left, max-right, left-sum + right-sum)
-// ↑線形時間
 //
 // FIND-MAXIMUM-SUBARRAY(A, low, high)
 //	if high == low
@@ -35,7 +34,28 @@ fn find_max_crossing_subarray(
     mid: usize,
     high: usize,
 ) -> (usize, usize, i64) {
-    todo!()
+    let mut max_left = mid;
+    let mut left_sum = i64::MIN;
+    let mut sum = 0;
+    for i in (low..=mid).rev() {
+        sum += a[i];
+        if sum > left_sum {
+            left_sum = sum;
+            max_left = i;
+        }
+    }
+
+    let mut max_right = mid;
+    let mut right_sum = i64::MIN;
+    sum = 0;
+    for j in (mid + 1)..=high {
+        sum = sum + a[j];
+        if sum > right_sum {
+            right_sum = sum;
+            max_right = j;
+        }
+    }
+    (max_left, max_right, left_sum + right_sum)
 }
 
 fn find_maximum_subarray(a: &Vec<i64>, low: usize, high: usize) -> (usize, usize, i64) {
