@@ -12,12 +12,48 @@
 //		swap(A[i], A[largest])
 //		MAX-HEAPIFY(A,largest)
 ////////////////
+fn max_heapify(a: &mut Vec<i64>, i: usize) {
+    let l = left(a, i);
+    let r = right(a, i);
+    let mut largest = i;
+    if let Some(l) = l {
+        if a[l] > a[i] {
+            largest = l;
+        }
+    }
+    if let Some(r) = r {
+        if a[r] > a[largest] {
+            largest = r;
+        }
+    }
+    if largest != i {
+        a.swap(i, largest);
+        max_heapify(a, largest);
+    }
+}
+fn left(a: &Vec<i64>, i: usize) -> Option<usize> {
+    if a.len() > (i * 2) + 1 {
+        Some(i * 2 + 1)
+    } else {
+        None
+    }
+}
+fn right(a: &Vec<i64>, i: usize) -> Option<usize> {
+    if a.len() > (i * 2) + 2 {
+        Some(i * 2 + 2)
+    } else {
+        None
+    }
+}
 ////////////////
 // BUILD-MAX-HEAP(A)
 //	A.heap-size = A.length
 //	for i = A.length downto 1
 //		MAX-HEAPIFY(A, i)
 ////////////////
+fn build_max_heap(a: &mut Vec<i64>) {
+    todo!()
+}
 ////////////////
 // HEAPSORT(A)
 //	BUILD-MAX-HEAP(A)
