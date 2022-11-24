@@ -26,3 +26,18 @@
 //		A.heap-size = A.heap-size - 1
 //		MAX-HEAPFY(A, 1)
 ////////////////
+pub fn heapsort(a: &Vec<i64>) -> Vec<i64> {
+    todo!()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn test_normal() {
+        assert_eq!(
+            heapsort(&vec![2, 4, 5, 7, 1, 3, 6]),
+            vec![1, 2, 3, 4, 5, 6, 7]
+        )
+    }
+}
