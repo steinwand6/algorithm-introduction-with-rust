@@ -1,5 +1,6 @@
 #![allow(dead_code)]
 mod find_maximum_subarray;
+mod heapsort;
 mod insert_sort;
 mod merge_sort;
 
