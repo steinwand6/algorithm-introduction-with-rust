@@ -70,6 +70,14 @@ pub fn heapsort(a: &Vec<i64>) -> Vec<i64> {
 mod tests {
     use super::*;
     #[test]
+    fn test_heapify() {
+        let mut res = vec![1, 3, 2];
+        max_heapify(&mut res, 0);
+        assert_eq!(res, vec![3, 1, 2]);
+        max_heapify(&mut res, 1);
+        assert_eq!(res, vec![3, 1, 2]);
+    }
+    #[test]
     fn test_normal() {
         assert_eq!(
             heapsort(&vec![2, 4, 5, 7, 1, 3, 6]),
